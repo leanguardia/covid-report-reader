@@ -19,3 +19,7 @@ class TestReportReader(TestCase):
     def test_read_number(self):
         report = self.reader.read()
         self.assertEqual(report["number"], "316")
+
+    def test_read_date(self):
+        report = self.reader.read()
+        self.assertEqual(report["date"], "Lunes 25 de enero de 2021")

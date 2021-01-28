@@ -15,14 +15,19 @@ class ReportReader:
         # custom_config = r'--oem 3 --psm 6'
         # string = ocr.image_to_data(self.departments_img())#, config=custom_config)
         string = ocr.image_to_data(self.img)
-        print(string)
         rows = string.split('\n')
         elements = [row.split('\t') for row in rows]
+        print(string)
+
+        date_elements = [row.split('\t') for row in rows[22:29]]
+        date_words = [date_elements[word_index][-1] for word_index in range(6)]
+
         return {
-            "new_cases": elements[36][-1],
             "number":    elements[14][-1],
+            "new_cases": elements[36][-1],
+            "date":      " ".join(date_words),
         }
-    
+
     def departments_img(self):
         return self.img[250:, :1518]
 
