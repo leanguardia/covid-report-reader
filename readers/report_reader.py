@@ -23,10 +23,11 @@ class ReportReader:
         date_words = [date_elements[word_index][-1] for word_index in range(6)]
 
         return {
-            "number":    elements[14][-1],
-            "date":      " ".join(date_words),
-            "time":      elements[28][-1][1:-1],
-            "new_cases": elements[36][-1],
+            "number":     elements[14][-1],
+            "date":       " ".join(date_words),
+            "time":       elements[28][-1][1:-1],
+            "new_cases":  elements[36][-1],
+            "new_deaths": elements[82][-1],
         }
 
     def departments_img(self):

@@ -5,8 +5,8 @@ from unittest import TestCase
 
 class TestReportReader(TestCase):
     def setUp(self):
-        self.report_img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
-        self.reader = ReportReader(self.report_img)
+        report_img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
+        self.reader = ReportReader(report_img)
         self.report = self.reader.read()
 
     def test_returns_a_dictionary(self):
@@ -23,3 +23,6 @@ class TestReportReader(TestCase):
 
     def test_read_new_cases(self):
         self.assertEqual(self.report["new_cases"], "1.781")
+
+    def test_read_new_deaths(self):
+        self.assertEqual(self.report["new_deaths"], "+66")
