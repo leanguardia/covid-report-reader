@@ -12,6 +12,10 @@ class TestReportReader(TestCase):
         report = self.reader.read()
         self.assertIsInstance(report, dict)
 
-    def test_returns_a_dataframe(self):
+    def test_read_new_cases(self):
         report = self.reader.read()
         self.assertEqual(report["new_cases"], "1.781")
+
+    def test_read_number(self):
+        report = self.reader.read()
+        self.assertEqual(report["number"], "316")

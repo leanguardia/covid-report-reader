@@ -13,12 +13,21 @@ class ReportReader:
 
     def read(self):
         # custom_config = r'--oem 3 --psm 6'
-        string = ocr.image_to_data(self.departments_img())#, config=custom_config)
+        # string = ocr.image_to_data(self.departments_img())#, config=custom_config)
+        string = ocr.image_to_data(self.img)
+        print(string)
         rows = string.split('\n')
         elements = [row.split('\t') for row in rows]
         return {
-            "new_cases": elements[5][-1]
+            "new_cases": elements[36][-1],
+            "number":    elements[14][-1],
         }
     
     def departments_img(self):
         return self.img[250:, :1518]
+
+if __name__ == "__main__":
+    img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
+    reader = ReportReader(img)
+    report = reader.read()
+    print(report)
