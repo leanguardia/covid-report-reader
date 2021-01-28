@@ -19,13 +19,14 @@ class ReportReader:
         elements = [row.split('\t') for row in rows]
         print(string)
 
-        date_elements = [row.split('\t') for row in rows[22:29]]
+        date_elements = [row.split('\t') for row in rows[22:28]]
         date_words = [date_elements[word_index][-1] for word_index in range(6)]
 
         return {
             "number":    elements[14][-1],
-            "new_cases": elements[36][-1],
             "date":      " ".join(date_words),
+            "time":      elements[28][-1][1:-1],
+            "new_cases": elements[36][-1],
         }
 
     def departments_img(self):

@@ -7,19 +7,19 @@ class TestReportReader(TestCase):
     def setUp(self):
         self.report_img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
         self.reader = ReportReader(self.report_img)
+        self.report = self.reader.read()
 
     def test_returns_a_dictionary(self):
-        report = self.reader.read()
-        self.assertIsInstance(report, dict)
-
-    def test_read_new_cases(self):
-        report = self.reader.read()
-        self.assertEqual(report["new_cases"], "1.781")
+        self.assertIsInstance(self.report, dict)
 
     def test_read_number(self):
-        report = self.reader.read()
-        self.assertEqual(report["number"], "316")
+        self.assertEqual(self.report["number"], "316")
 
     def test_read_date(self):
-        report = self.reader.read()
-        self.assertEqual(report["date"], "Lunes 25 de enero de 2021")
+        self.assertEqual(self.report["date"], "Lunes 25 de enero de 2021")
+
+    def test_read_time(self):
+        self.assertEqual(self.report["time"], "20:30")
+
+    def test_read_new_cases(self):
+        self.assertEqual(self.report["new_cases"], "1.781")
