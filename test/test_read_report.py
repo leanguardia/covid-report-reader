@@ -44,3 +44,24 @@ class TestReportReader(TestCase):
 
     def test_read_discarted(self):
         self.assertEqual(self.report["discarted"], "315.414")
+
+    def test_read_beni(self):
+        self.assertEqual(self.report["beni"], "9")
+
+    def test_read_cochabamba(self):
+        self.assertEqual(self.report["cochabamba"], "217")
+    
+    def test_read_potosi(self):
+        self.assertEqual(self.report["chuquisaca"], "222")
+
+    def test_read_la_paz(self):
+        self.assertEqual(self.report["la_paz"], "224")
+
+    def test_read_pando(self):
+        self.assertEqual(self.report["pando"], "22")
+
+    def test_read_santa_cruz(self):
+        self.assertEqual(self.report["santa_cruz"], "870")
+
+    def test_read_tarija(self):
+        self.assertEqual(self.report["tarija"], "34")

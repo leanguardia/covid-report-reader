@@ -31,6 +31,13 @@ class ReportReader:
             "suspicious":  rows[79].text(),
             "accumulated": rows[98].text(),
             "discarted":   rows[88].text(),
+            "beni":        rows[66].text(),
+            "chuquisaca":  rows[95].text(),
+            "cochabamba":  rows[78].text(),
+            "la_paz":      rows[70].text(),
+            "pando":       rows[64].text(),
+            "santa_cruz":  rows[71].text(),
+            "tarija":      rows[105].text(),
         }
 
     def departments_img(self):
