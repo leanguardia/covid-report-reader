@@ -1,3 +1,5 @@
+from readers.parsers import OcrDataParser
+
 import cv2
 import pytesseract as ocr
 
@@ -18,18 +20,17 @@ class ReportReader:
         print(string)
         # print(repr(string))
 
-        rows = string.split('\n')
-        elements = [row.split('\t') for row in rows]
-
-        date_elements = [row.split('\t') for row in rows[22:28]]
-        date_words = [date_elements[word_index][-1] for word_index in range(6)]
+        rows = OcrDataParser().parse(string)
+        date_words = rows[22].text()
+        for i in range(23, 28):
+            date_words += " " + rows[i].text()
 
         return {
-            "number":     elements[14][-1],
-            "date":       " ".join(date_words),
-            "time":       elements[28][-1][1:-1],
-            "new_cases":  elements[36][-1],
-            "new_deaths": elements[82][-1],
+            "number":     rows[14].text(),
+            "date":       date_words,
+            "time":       rows[28].text(),
+            "new_cases":  rows[36].text(),
+            "new_deaths": rows[82].text(),
         }
 
     def departments_img(self):
