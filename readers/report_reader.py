@@ -20,11 +20,17 @@ class ReportReader:
             date_words += " " + rows[i].text()
 
         return {
-            "number":     rows[14].text(),
-            "date":       date_words,
-            "time":       rows[28].text(),
-            "new_cases":  rows[36].text(),
-            "new_deaths": rows[82].text(),
+            "number":      rows[14].text(),
+            "date":        date_words,
+            "time":        rows[28].text(),
+            "new_cases":   rows[36].text(),
+            "new_deaths":  rows[82].text(),
+            "recovered":   rows[43].text(),
+            "active":      rows[46].text(),
+            "deaths":      rows[76].text(),
+            "suspicious":  rows[79].text(),
+            "accumulated": rows[98].text(),
+            "discarted":   rows[88].text(),
         }
 
     def departments_img(self):

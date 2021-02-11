@@ -26,3 +26,21 @@ class TestReportReader(TestCase):
 
     def test_read_new_deaths(self):
         self.assertEqual(self.report["new_deaths"], "+66")
+
+    def test_read_recovered(self):
+        self.assertEqual(self.report["recovered"], "151.469")
+
+    def test_read_active(self):
+        self.assertEqual(self.report["active"], "41.298")
+
+    def test_read_deaths(self):
+        self.assertEqual(self.report["deaths"], "[10.051")
+
+    def test_read_suspicious(self):
+        self.assertEqual(self.report["suspicious"], "4.263")
+
+    def test_read_accumulated(self):
+        self.assertEqual(self.report["accumulated"], "202.818")
+
+    def test_read_discarted(self):
+        self.assertEqual(self.report["discarted"], "315.414")
