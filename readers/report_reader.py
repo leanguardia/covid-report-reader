@@ -1,13 +1,7 @@
 from readers.parsers import OcrDataParser
+from img.processing import grayscale, threshold
 
-import cv2
 import pytesseract as ocr
-
-def grayscale(image):
-    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-def threshold(image):
-    return cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
 class ReportReader:
     def __init__(self, report_img):
