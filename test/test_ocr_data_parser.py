@@ -19,7 +19,6 @@ class TestReportReader(TestCase):
         rows = self.parser.parse(self.raw_data)
         self.assertEqual(len(rows), 111)
 
-    # def test_returns_text(self):
-    #     rows = self.parser.parse(self.raw_data)
-    #     self.assertEqual(rows[14].text(), "215")
-    
+    def test_returns_text(self):
+        rows = self.parser.parse(self.raw_data)
+        self.assertEqual(rows[14].text(), "316")

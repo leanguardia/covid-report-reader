@@ -9,7 +9,7 @@ class OcrDataParser:
 
 class OcrDataRow:
     def __init__(self, raw):
-        self.elements = raw.split('\t')
+        self.elements = raw.split('\\t')
 
     def text(self):
         return self.elements[-1]
