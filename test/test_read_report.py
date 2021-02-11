@@ -1,13 +1,17 @@
 from readers.report_reader import ReportReader
+from img.processing import process
 
 import cv2
 from unittest import TestCase
 
+report_img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
+processed = process(report_img)
+reader = ReportReader(processed)
+report = reader.read()
+
 class TestReportReader(TestCase):
     def setUp(self):
-        report_img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
-        self.reader = ReportReader(report_img)
-        self.report = self.reader.read()
+        self.report = report 
 
     def test_returns_a_dictionary(self):
         self.assertIsInstance(self.report, dict)

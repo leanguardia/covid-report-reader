@@ -3,8 +3,8 @@ import cv2
 def process(image):
     height, width, _ = image.shape
     
-    white_square(image, (0, height - 150), (490, height)) # Vamos a salir adelante
-    white_square(image, (width - 350, 0),  (width, 350)) # Logo Min. de Salud
+    # white_square(image, (0, height - 150), (490, height)) # Vamos a salir adelante
+    # white_square(image, (width - 350, 0),  (width, 350)) # Logo Min. de Salud
     # white_square(image, (378, 500), (1010, 1200)) # Map Lines
     # white_square(image, (1705, 700), (1835, 780)) # Alert Sign (suspicious)
     return threshold(grayscale(image))
