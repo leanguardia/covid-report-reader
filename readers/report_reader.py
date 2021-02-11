@@ -15,9 +15,11 @@ class ReportReader:
         # custom_config = r'--oem 3 --psm 6'
         # string = ocr.image_to_data(self.departments_img())#, config=custom_config)
         string = ocr.image_to_data(self.img)
+        print(string)
+        # print(repr(string))
+
         rows = string.split('\n')
         elements = [row.split('\t') for row in rows]
-        print(string)
 
         date_elements = [row.split('\t') for row in rows[22:28]]
         date_words = [date_elements[word_index][-1] for word_index in range(6)]
