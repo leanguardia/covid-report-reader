@@ -5,7 +5,7 @@ import pytesseract as ocr
 
 class ReportReader:
     def __init__(self, report_img):
-        self.img = threshold(grayscale(report_img))
+        self.img = report_img
 
     def read(self):
         # custom_config = r'--oem 3 --psm 6'
@@ -40,11 +40,10 @@ class ReportReader:
             "tarija":      rows[105].text(),
         }
 
-    def departments_img(self):
-        return self.img[250:, :1518]
-
 if __name__ == "__main__":
     img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
+    img = process(img)
+
     reader = ReportReader(img)
     report = reader.read()
     print(report)
