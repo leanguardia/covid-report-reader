@@ -17,7 +17,7 @@ class TestReportReader(TestCase):
         self.assertIsInstance(self.report, dict)
 
     def test_read_number(self):
-        self.assertEqual(self.report["number"], "316")
+        self.assertEqual(self.report["number"], "N° 316")
 
     def test_read_date(self):
         self.assertEqual(self.report["date"], "Lunes 25 de enero de 2021")
