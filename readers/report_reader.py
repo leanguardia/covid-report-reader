@@ -14,15 +14,12 @@ class ReportReader:
         # print(ocr_data)
         # print(repr(ocr_data))
         self.rows = OcrDataParser().parse(ocr_data)
-
         # portion = self.img[40:150, 1475:1800]
 
     def read(self):
         return {
-            # "number":      self.rows[14].text(),
             "number":      self._read_relative((0.5761, 0.028), (0.6905, 0.0975)),
-            "date":        self._read_date(),
-            "time":        self.rows[28].text(),
+            "date_time":   self._read_relative((0.0180, 0.0900), (0.62, 0.1680)),
             "new_cases":   self.rows[36].text(),
             "new_deaths":  self.rows[82].text(),
             "recovered":   self.rows[43].text(),
@@ -50,12 +47,6 @@ class ReportReader:
         # print(string)
         # print(repr(string))
         return string[:-2]
-
-    def _read_date(self):
-        date_words = self.rows[22].text()
-        for i in range(23, 28):
-            date_words += " " + self.rows[i].text()
-        return date_words
 
 if __name__ == "__main__":
     img = cv2.imread("test/fixtures/210125-Rep-COVID-316-2030-01-scaled.jpg")
