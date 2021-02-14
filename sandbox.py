@@ -10,15 +10,14 @@ from img.processing import process#, grayscale, threshold
 
 
 df_data = {
-  'number': [], 'date': [], 'time': [], 'new_cases': [], 'new_deaths': [], 'recovered': [],
+  'number': [], 'date_time': [], 'new_cases': [], 'new_deaths': [], 'recovered': [],
   'active': [], 'deaths': [], 'suspicious': [], 'accumulated': [], 'discarted': [],
   'beni': [], 'chuquisaca': [], 'cochabamba': [], 'la_paz': [], 'pando': [], 'santa_cruz': [], 'tarija': []
 }
 
 def accumulate_report(report):
     df_data['number'].append(report['number'])
-    df_data['date'].append(report['date'])
-    df_data['time'].append(report['time'])
+    df_data['date_time'].append(report['date_time'])
     df_data['new_cases'].append(report['new_cases'])
     df_data['new_deaths'].append(report['new_deaths'])
     df_data['recovered'].append(report['recovered'])
@@ -40,17 +39,16 @@ reports_path = 'img/reportes_salud/'
 
 _, _, filenames = next(walk(reports_path))
 # filenames = ['1353866415820955648_0.png']
-filenames = ['1353866415820955648_0.png']
 
 failed_files = ['.DS_Store',
-          '1339026608439627778_0.png',
-          '1338657548040286210_0.png',
-          '1340836592127074304_0.png',
-          '1355681007500976133_0.png',
-          '1347715466790363136_0.png',
-          '1343723603758604292_0.png',
-          '1356409086234009602_0.png',
-          '1341198161566720001_0.png',
+          # '1339026608439627778_0.png',
+          # '1338657548040286210_0.png',
+          # '1340836592127074304_0.png',
+          # '1355681007500976133_0.png',
+          # '1347715466790363136_0.png',
+          # '1343723603758604292_0.png',
+          # '1356409086234009602_0.png',
+          # '1341198161566720001_0.png',
         ]
 
 for filename in filenames:
