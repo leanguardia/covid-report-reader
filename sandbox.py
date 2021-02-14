@@ -9,10 +9,38 @@ from readers.report_reader import ReportReader
 from img.processing import process#, grayscale, threshold 
 
 
+df_data = {
+  'number': [], 'date': [], 'time': [], 'new_cases': [], 'new_deaths': [], 'recovered': [],
+  'active': [], 'deaths': [], 'suspicious': [], 'accumulated': [], 'discarted': [],
+  'beni': [], 'chuquisaca': [], 'cochabamba': [], 'la_paz': [], 'pando': [], 'santa_cruz': [], 'tarija': []
+}
+
+def accumulate_report(report):
+    df_data['number'].append(report['number'])
+    df_data['date'].append(report['date'])
+    df_data['time'].append(report['time'])
+    df_data['new_cases'].append(report['new_cases'])
+    df_data['new_deaths'].append(report['new_deaths'])
+    df_data['recovered'].append(report['recovered'])
+    df_data['active'].append(report['active'])
+    df_data['deaths'].append(report['deaths'])
+    df_data['suspicious'].append(report['suspicious'])
+    df_data['accumulated'].append(report['accumulated'])
+    df_data['discarted'].append(report['discarted'])
+    df_data['beni'].append(report['beni'])
+    df_data['chuquisaca'].append(report['chuquisaca'])
+    df_data['cochabamba'].append(report['cochabamba'])
+    df_data['la_paz'].append(report['la_paz'])
+    df_data['pando'].append(report['pando'])
+    df_data['santa_cruz'].append(report['santa_cruz'])
+    df_data['tarija'].append(report['tarija'])
+    return df_data
+
 reports_path = 'img/reportes_salud/'
 
 _, _, filenames = next(walk(reports_path))
 # filenames = ['1353866415820955648_0.png']
+filenames = ['1353866415820955648_0.png']
 
 failed_files = ['.DS_Store',
           '1339026608439627778_0.png',
@@ -25,26 +53,6 @@ failed_files = ['.DS_Store',
           '1341198161566720001_0.png',
         ]
 
-df_data = {
-  'number': [],
-  'date': [],
-  'time': [],
-  'new_cases': [],
-  'new_deaths': [],
-  'recovered': [],
-  'active': [],
-  'deaths': [],
-  'suspicious': [],
-  'accumulated': [],
-  'discarted': [],
-  'beni': [],
-  'chuquisaca': [],
-  'cochabamba': [],
-  'la_paz': [],
-  'pando': [],
-  'santa_cruz': [],
-  'tarija': []
-}
 for filename in filenames:
     print("\n> Processing:", filename)
     if filename in failed_files: print('skip'); continue
@@ -60,7 +68,6 @@ for filename in filenames:
       accumulate_report(report)
     except IndexError as e:
       print("Failed " + filename)
-
 
 print(df_data)
 df = pd.DataFrame(df_data)
