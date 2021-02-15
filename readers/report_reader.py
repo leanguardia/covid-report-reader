@@ -21,7 +21,7 @@ class ReportReader:
             "number":      self._read_relative((0.5761, 0.028), (0.6905, 0.0975)),
             "date_time":   self._read_relative((0.0180, 0.0900), (0.62, 0.1680)),
             "new_cases":   self._read_relative((0.092, 0.2000), (0.2080, 0.270)),
-            "new_deaths":  self.rows[82].text(),
+            "new_deaths":  self._read_relative((0.808, 0.642), (0.950, 0.70)),
             "recovered":   self.rows[43].text(),
             "active":      self.rows[46].text(),
             "deaths":      self.rows[76].text(),
