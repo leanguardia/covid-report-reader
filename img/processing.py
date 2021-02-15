@@ -5,6 +5,12 @@ def show_img(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+def rectangle_to_relative(img, topleft, bottomright):
+  height, width = img.shape
+  cv2.rectangle(img, topleft, bottomright, (0,255,0), 1)
+  print(f"({(topleft[0]/width)}, {(topleft[1]/height)}) - ({bottomright[0]/width}, {bottomright[1]/height})")
+  show_img(img)
+
 def process(image):
     height, width, _ = image.shape
     
