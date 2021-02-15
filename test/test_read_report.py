@@ -58,8 +58,14 @@ class TestReportReader(TestCase):
     def test_read_la_paz(self):
         self.assertEqual(self.report["la_paz"], "224")
 
+    def test_read_oruro(self):
+        self.assertEqual(self.report["oruro"], "93")
+
     def test_read_pando(self):
         self.assertEqual(self.report["pando"], "22")
+
+    def test_read_pando(self):
+        self.assertEqual(self.report["potosi"], "90")
 
     def test_read_santa_cruz(self):
         self.assertEqual(self.report["santa_cruz"], "870")

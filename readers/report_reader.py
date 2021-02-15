@@ -7,7 +7,7 @@ from img.processing import show_img, process, rectangle_to_relative
 class ReportReader:
     def __init__(self, report_img):
         self.img = report_img
-        # rectangle_to_relative(self.img, (1181, 715), (1345, 815))
+        # rectangle_to_relative(self.img, (332, 1200), (487, 1260))
         self.h, self.w = self.img.shape
         # custom_config = r'--oem 3 --psm 6'
         # ocr_data = ocr.image_to_data(self.departments_img())#, config=custom_config)
@@ -31,13 +31,15 @@ class ReportReader:
             "new_deaths":  self._read_relative((0.808, 0.642), (0.950, 0.70)),
             "discarted":   self._read_relative((0.808, 0.852), (0.955, 0.929)),
             
-            "beni":        "9", #self._read_relative((0.379, 0.33), (0.4710, 0.399)),
-            "chuquisaca":  "3",#self._read_relative((0.379, 0.33), (0.4710, 0.399)),
-            "cochabamba":  self.rows[78].text(),
-            "la_paz":      self.rows[70].text(),
-            "pando":       self.rows[64].text(),
+            "beni":        self._read_relative((0.379, 0.33), (0.4710, 0.399)), # "9"
+            "chuquisaca":  self._read_relative((0.4719, 0.8126), (0.5273, 0.8543)),
+            "cochabamba":  self._read_relative((0.0898, 0.5989), (0.1465, 0.6384)),
+            "la_paz":      self._read_relative((0.084, 0.4754), (0.1445, 0.5135)), #"224"
+            "oruro":       self._read_relative((0.1008, 0.7176), (0.1605, 0.7606)),
+            "pando":       self._read_relative((0.0887, 0.3511), (0.1523, 0.3935)),
+            "potosi":      self._read_relative((0.1297, 0.8328), (0.1902, 0.8744)),
             "santa_cruz":  self._read_relative((0.4613, 0.4961), (0.5253, 0.5655)),
-            "tarija":      self.rows[105].text(),
+            "tarija":      self._read_relative((0.3867, 0.9299), (0.4441, 0.9715)), #"34"
         }
 
     def _read_relative(self, topleft, bottomright):
@@ -47,8 +49,8 @@ class ReportReader:
         ]
         # show_img(portion)
         string = ocr.image_to_string(portion)
-        print(string)
-        print(repr(string))
+        # print(string)
+        # print(repr(string))
         return string[:-2]
 
 if __name__ == "__main__":
