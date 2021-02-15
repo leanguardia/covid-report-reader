@@ -8,7 +8,7 @@ def show_img(img):
 def rectangle_to_relative(img, topleft, bottomright):
   height, width = img.shape
   cv2.rectangle(img, topleft, bottomright, (0,255,0), 1)
-  print(f"({(topleft[0]/width)}, {(topleft[1]/height)}) - ({bottomright[0]/width}, {bottomright[1]/height})")
+  print(f"({(round(topleft[0]/width, 4))}, {round(topleft[1]/height,4)}), ({round(bottomright[0]/width, 4)}, {round(bottomright[1]/height,4)})")
   show_img(img)
 
 def process(image):
