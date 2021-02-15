@@ -35,7 +35,7 @@ class TestReportReader(TestCase):
         self.assertEqual(self.report["active"], "41.298")
 
     def test_read_deaths(self):
-        self.assertEqual(self.report["deaths"], "[10.051")
+        self.assertEqual(self.report["deaths"], "10.051")
 
     def test_read_suspicious(self):
         self.assertEqual(self.report["suspicious"], "4.263")
