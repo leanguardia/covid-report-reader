@@ -15,7 +15,7 @@ def rectangle_to_relative(img, topleft, bottomright):
 
 def process(image):
     height, width, _ = image.shape
-    return threshold(grayscale(image))
+    return threshold_otsu(grayscale(image))
 
 def grayscale(image):
     return cv.cvtColor(image, cv.COLOR_BGR2GRAY)

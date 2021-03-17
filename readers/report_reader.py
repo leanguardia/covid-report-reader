@@ -19,33 +19,42 @@ class ReportReader:
 
     def read(self):
         return {
-            "number":      self._read_relative((0.5761, 0.028), (0.6905, 0.0975)),
-            "date_time":   self._read_relative((0.0180, 0.0900), (0.62, 0.1680)),
-            "new_cases":   self._read_relative((0.092, 0.2000), (0.2080, 0.270)),
+            "number":      self._read_relative((57.61, 02.8), (69.05, 09.75)),
+            "date_time":   self._read_relative((1.80, 09.00), (62, 16.80)),
+            "new_cases":   self._read_relative((09.2, 20.00), (20.80, 27.0)),
             
-            "recovered":   self._read_relative((0.638, 0.270), (0.765, 0.352)),
-            "suspicious":  self._read_relative((0.638, 0.595), (0.765, 0.668)),
-            "accumulated": self._read_relative((0.628, 0.852), (0.777, 0.929)),
-            "active":      self._read_relative((0.818, 0.312), (0.955, 0.388)),
-            "deaths":      self._read_relative((0.818, 0.552), (0.945, 0.618)),
-            "new_deaths":  self._read_relative((0.808, 0.642), (0.950, 0.70)),
-            "discarted":   self._read_relative((0.808, 0.852), (0.955, 0.929)),
+            "recovered":   self._read_relative((63.8, 27.0), (76.5, 35.2)),
+            "suspicious":  self._read_relative((63.8, 59.5), (76.5, 66.8)),
+            "accumulated": self._read_relative((62.8, 85.2), (77.7, 92.9)),
+            "active":      self._read_relative((81.8, 31.2), (95.5, 38.8)),
+            "deaths":      self._read_relative((81.8, 55.2), (94.5, 61.8)),
+            "new_deaths":  self._read_relative((80.8, 64.2), (95.0, 70)),
+            "discarted":   self._read_relative((80.8, 85.2), (95.5, 92.9)),
             
-            "beni":        self._read_relative((0.379, 0.33), (0.4710, 0.399)), # "9"
-            "chuquisaca":  self._read_relative((0.4719, 0.8126), (0.5273, 0.8543)),
-            "cochabamba":  self._read_relative((0.0898, 0.5989), (0.1465, 0.6384)),
-            "la_paz":      self._read_relative((0.084, 0.4754), (0.1445, 0.5135)), #"224"
-            "oruro":       self._read_relative((0.1008, 0.7176), (0.1605, 0.7606)),
-            "pando":       self._read_relative((0.0887, 0.3511), (0.1523, 0.3935)),
-            "potosi":      self._read_relative((0.1297, 0.8328), (0.1902, 0.8744)),
-            "santa_cruz":  self._read_relative((0.4613, 0.4961), (0.5253, 0.5655)),
-            "tarija":      self._read_relative((0.3867, 0.9299), (0.4441, 0.9715)), #"34"
+            "beni":        self._read_relative((37.9, 33), (47.10, 39.9)), # "9"
+            "chuquisaca":  self._read_relative((47.19, 81.26), (52.73, 85.43)),
+            "cochabamba":  self._read_relative((08.98, 59.89), (14.65, 63.84)),
+            "la_paz":      self._read_relative((08.4, 47.54), (14.45, 51.35)), #"224"
+            "oruro":       self._read_relative((10.08, 71.76), (16.05, 76.06)),
+            "pando":       self._read_relative((08.87, 35.11), (15.23, 39.35)),
+            "potosi":      self._read_relative((12.97, 83.28), (19.02, 87.44)),
+            "santa_cruz":  self._read_relative((46.13, 49.61), (52.53, 56.55)),
+            "tarija":      self._read_relative((38.67, 92.99), (44.41, 97.15)), #"34"
         }
 
     def _read_relative(self, topleft, bottomright):
+        """ Isolates a portion of the image and reads the text inside.
+            Args:
+            -   topleft: point (x,y) in % relative to full image
+            -   bottomright: point (x,y) in % relative to full image
+            Returns:
+            -   OCR output of sub-image
+        """
+        x1, y1 = topleft
+        x2, y2 = bottomright
         portion = self.img[
-            int(topleft[1]*self.h):int(bottomright[1]*self.h),
-            int(topleft[0]*self.w):int(bottomright[0]*self.w)
+            int(y1 * self.h / 100):int(y2 * self.h / 100),
+            int(x1 * self.w / 100):int(x2 * self.w / 100)
         ]
         # show_img(portion)
         string = ocr.image_to_string(portion)
