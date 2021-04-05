@@ -6,7 +6,7 @@ import pytesseract as ocr
 
 from readers.parsers import OcrDataParser
 from readers.report_reader import ReportReader
-from img.processing import process#, grayscale, threshold 
+from img.processing import process, show_img#, grayscale, threshold 
 
 
 df_data = {
@@ -35,21 +35,12 @@ def accumulate_report(report):
     df_data['tarija'].append(report['tarija'])
     return df_data
 
-reports_path = 'img/reportes_salud/'
+reports_path = 'img/reportes_salud_casos/'
 
 _, _, filenames = next(walk(reports_path))
-# filenames = ['1353866415820955648_0.png']
+# filenames = ['299_.png']
 
-failed_files = ['.DS_Store',
-          # '1339026608439627778_0.png',
-          # '1338657548040286210_0.png',
-          # '1340836592127074304_0.png',
-          # '1355681007500976133_0.png',
-          # '1347715466790363136_0.png',
-          # '1343723603758604292_0.png',
-          # '1356409086234009602_0.png',
-          # '1341198161566720001_0.png',
-        ]
+failed_files = ['.DS_Store']
 
 for filename in filenames:
     print("\n> Processing:", filename)
@@ -69,7 +60,8 @@ for filename in filenames:
 
 print(df_data)
 df = pd.DataFrame(df_data)
-df.to_csv('full.csv', index=False)
+df = df.sort_values(by="number")
+df.to_csv('full_report.csv', index=False)
 
     # :::::: OCR ::::::
     
